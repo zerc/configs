@@ -95,6 +95,9 @@ set backspace=2  " make backspace work like most other apps
 set nobackup
 set nowb
 set noswapfile
+
+" Ignore some shit
+set wildignore+=*/tmp/*,*/venv/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
 " #### End General settings ####
 
 
@@ -117,7 +120,6 @@ map <space>w :w<CR>
 
 " #### NERDTree settings ####
 let NERDTreeRespectWildIgnore = 1
-" Give a shortcut key to NERD Tree
 map <TAB> :NERDTreeToggle<CR>
 map <C-N> :NERDTreeFind<CR>
 " #### End NERDTree settings ####
