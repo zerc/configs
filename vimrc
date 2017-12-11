@@ -17,8 +17,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'rhysd/vim-grammarous'
 Plugin 'mileszs/ack.vim'
+"Plugin 'rhysd/vim-grammarous'
 " Plugin 'syntastic'
 " Plugin 'tpope/vim-repeat'
 " Plugin 'junegunn/goyo.vim'
@@ -32,10 +32,10 @@ Plugin 'vim-airline/vim-airline'
 
 " Python
 Plugin 'klen/python-mode'
-" Plugin 'davidhalter/jedi-vim'
 Plugin 'mitsuhiko/vim-jinja'
 Plugin 'zerc/vim-isort'
-" Plugin 'janko-m/vim-test'
+Plugin 'janko-m/vim-test'
+" Plugin 'davidhalter/jedi-vim'
 
 " Golang
 Plugin 'fatih/vim-go'
@@ -73,7 +73,7 @@ set splitright
 
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype htmldjango setlocal ts=2 sw=2 expandtab
-autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab colorcolumn=80
+autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab colorcolumn=120
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
 " #### End Visial settings ####
 
@@ -193,12 +193,45 @@ let g:pymode_breakpoint_bind = '<leader>b'
 
 
 " #### Grammar settings ####
-set spell spelllang=en_gb
-setlocal spell spelllang=en_gb
+" set spell spelllang=en_gb
+" setlocal spell spelllang=en_gb
 " #### End Grammar settings ####
-"
-"
+
+
 " #### Search (Ack) ####
 let g:ackprg = 'ag --nogroup --nocolor --column'
 vmap <space>i :Ack --ignore *migrations* "<C-R>" festicket/apps/
 " #### End Search (Ack) ####
+
+
+" #### Python mode settings
+let g:pymode = 1
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options = 1
+let g:pymode_options_colorcolumn = 1
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K'
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_bind = '<leader>b'
+let g:pymode_folding = 0
+let g:pymode_lint_ignore = "E501,W391"
+let g:pymode_rope = 0
+let g:pymode_lint = 0  " doesn't work from the terminal
+let g:pymode_lint_cwindow=1
+let g:pymode_options_max_line_length = 120
+let g:pymode_lint_options_pylint = {'max-line-length': g:pymode_options_max_line_length}
+let g:syntastic_python_pylint_post_args="--max-line-length=120"
+" #### End Python mode settings
+
+
+" #### Python tests settings ####
+let g:test#strategy = 'basic'
+let g:test#python#pytest#options = '-x --reuse-db -vv'
+let g:test#python#runner = 'pytest'
+let g:test#python#pytest#executable = 'docker-compose run --rm web py.test'
+nmap <silent> <leader>w :TestNearest<CR>
+nmap <silent> <leader>W :TestFile<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>L :TestLast --pdb<CR>
+nmap <silent> <leader>] :TestVisit<CR>
+" #### End Python tests settings ####
