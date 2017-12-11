@@ -17,6 +17,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'rhysd/vim-grammarous'
+Plugin 'mileszs/ack.vim'
 " Plugin 'syntastic'
 " Plugin 'tpope/vim-repeat'
 " Plugin 'junegunn/goyo.vim'
@@ -186,3 +188,15 @@ let g:pymode_rope = 0
 let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_bind = '<leader>b'
 " #### End Python settings ####
+
+
+" #### Grammar settings ####
+set spell spelllang=en_gb
+setlocal spell spelllang=en_gb
+" #### End Grammar settings ####
+"
+"
+" #### Search (Ack) ####
+let g:ackprg = 'ag --nogroup --nocolor --column'
+vmap <space>i :Ack --ignore *migrations* "<C-R>" festicket/apps/
+" #### End Search (Ack) ####
