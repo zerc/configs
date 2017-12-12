@@ -31,10 +31,11 @@ Plugin 'AlessandroYorba/Sierra'
 Plugin 'vim-airline/vim-airline'
 
 " Python
-Plugin 'klen/python-mode'
+Plugin 'klen/python-mode'  " consider to remove it because there is no use
 Plugin 'mitsuhiko/vim-jinja'
 Plugin 'zerc/vim-isort'
 Plugin 'janko-m/vim-test'
+Plugin 'vim-syntastic/syntastic'  " Python validation
 " Plugin 'davidhalter/jedi-vim'
 
 " Golang
@@ -235,3 +236,12 @@ nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>L :TestLast --pdb<CR>
 nmap <silent> <leader>] :TestVisit<CR>
 " #### End Python tests settings ####
+
+
+" #### Flake8 settings ####
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+" #### End Flake8 settings ####
