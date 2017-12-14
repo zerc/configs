@@ -18,12 +18,12 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'mileszs/ack.vim'
+Plugin 'valloric/youcompleteme'  " see installation notes
 "Plugin 'rhysd/vim-grammarous'
 " Plugin 'syntastic'
 " Plugin 'tpope/vim-repeat'
 " Plugin 'junegunn/goyo.vim'
 " Plugin 'mattn/webapi-vim'
-" Plugin 'Valloric/YouCompleteMe'
 
 " Visual
 "Plugin 'altercation/vim-colors-solarized'
@@ -245,3 +245,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 " #### End Flake8 settings ####
+
+
+" #### Youcompleteme settings ####
+let g:ycm_python_binary_path = 'python'  " use Python from the active virtual environment
+nnoremap <leader>o :YcmCompleter GoTo<CR>
+" #### End Youcompleteme settings ####
