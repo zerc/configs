@@ -17,6 +17,11 @@ Check `Makefile`. By default you can try to run:
 $ make install
 ```
 
+# SCREENSHOTS
+
+![vim](https://github.com/zerc/configs/blob/images/screenshots/001_vim.png)
+![tmux](https://github.com/zerc/configs/blob/images/screenshots/002_tmux.png)
+
 # TODO
 
 * Finish iTerm2 integration/configuration (see `install-iterm` command) using of [Dynamic Profiles](https://www.iterm2.com/documentation-dynamic-profiles.html).
