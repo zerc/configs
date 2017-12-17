@@ -1,10 +1,22 @@
+# Software
+
+A list of software for which I have configs:
+
+* iTerm2
+* tmux
+* Vim
+* Quake3
+
+Favourite font: [Fira Code Retina](https://github.com/tonsky/FiraCode)
+
 # Install
 
-TODO: write a script
+Check `Makefile`. By default you can try to run:
 
 ```shell
-ln -s tmux.conf ~/.tmux.conf
-ln -s vimrc ~/.vimrc
+$ make install
 ```
 
-`iTermProfile.json` can be restarted via UI. Don't forget to check `Working Directory`.
+# TODO
+
+* Finish iTerm2 integration/configuration (see `install-iterm` command) using of [Dynamic Profiles](https://www.iterm2.com/documentation-dynamic-profiles.html).

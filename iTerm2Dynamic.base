@@ -1,0 +1,9 @@
+{
+  "Profiles": [
+    {
+      "Name": "ZeroProfile",
+      "Guid": "@GUID",
+      "Normal Font" : "FiraCode-Retina 12",
+    },
+  ]
+}
