@@ -98,7 +98,7 @@ set nowb
 set noswapfile
 
 " Ignore some shit
-set wildignore+=*/tmp/*,*/venv/*,*.so,*.swp,*.zip,*.pyc     " MacOSX/Linux
+set wildignore+=*/tmp/*,*/venv/*,*.so,*.swp,*.zip,*.pyc,__pycache__     " MacOSX/Linux
 " #### End General settings ####
 
 
