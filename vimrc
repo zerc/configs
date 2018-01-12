@@ -62,6 +62,7 @@ filetype plugin indent on    " required
 colorscheme sierra
 syntax enable
 set cursorline
+set cursorcolumn
 set ruler
 set showmatch
 set relativenumber
@@ -99,6 +100,9 @@ set noswapfile
 
 " Ignore some shit
 set wildignore+=*/tmp/*,*/venv/*,*.so,*.swp,*.zip,*.pyc,__pycache__     " MacOSX/Linux
+
+" Remove trailing whitespaces
+autocmd FileType python,yaml,html autocmd BufWritePre <buffer> %s/\s\+$//e
 " #### End General settings ####
 
 
@@ -182,15 +186,6 @@ let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_methods = 1
 " #### End Golang settings ####
-
-
-" #### Python settings ####
-let g:pymode = 1
-let g:pymode_folding = 0
-let g:pymode_rope = 0
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_bind = '<leader>b'
-" #### End Python settings ####
 
 
 " #### Grammar settings ####
