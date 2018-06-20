@@ -19,6 +19,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'mileszs/ack.vim'
 Plugin 'valloric/youcompleteme'  " see installation notes
+Plugin 'misterbuckley/vim-definitive'
 "Plugin 'rhysd/vim-grammarous'
 " Plugin 'syntastic'
 " Plugin 'tpope/vim-repeat'
@@ -198,6 +199,11 @@ let g:go_highlight_methods = 1
 let g:ackprg = 'ag --nogroup --nocolor --column'
 vmap <space>i :Ack --ignore *migrations* "<C-R>" festicket/apps/
 " #### End Search (Ack) ####
+
+
+" #### Search (vim-definitive) ####
+nnoremap <Leader>d :FindDefinition<CR>
+" ### End Search (vim-definitive) ####
 
 
 " #### Python mode settings
