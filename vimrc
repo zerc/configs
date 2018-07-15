@@ -104,6 +104,10 @@ set wildignore+=*/tmp/*,*/venv/*,*.so,*.swp,*.zip,*.pyc,__pycache__     " MacOSX
 
 " Remove trailing whitespaces
 autocmd FileType python,yaml,html autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" Disable bell
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 " #### End General settings ####
 
 
