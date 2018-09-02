@@ -6,6 +6,7 @@ A list of software for which I have configs:
 * tmux
 * Vim
 * Quake3
+* Custom layout for GH60Satan 60% keyboard (see `keyboard` folder)
 
 Favourite font: [Fira Code Retina](https://github.com/tonsky/FiraCode)
 
