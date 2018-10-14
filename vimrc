@@ -18,7 +18,7 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'mileszs/ack.vim'
-Plugin 'valloric/youcompleteme'  " see installation notes
+"Plugin 'valloric/youcompleteme'  " see installation notes
 Plugin 'misterbuckley/vim-definitive'
 "Plugin 'rhysd/vim-grammarous'
 " Plugin 'syntastic'
