@@ -19,13 +19,18 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'mileszs/ack.vim'
-"Plugin 'valloric/youcompleteme'  " see installation notes
+" Does not work for some reason anymore. Causes seg fault
+" Plugin 'valloric/youcompleteme'  " see installation notes
 Plugin 'misterbuckley/vim-definitive'
+Plugin 'dbeniamine/cheat.sh-vim'
+Plugin 'ervandew/supertab'
 "Plugin 'rhysd/vim-grammarous'
 " Plugin 'syntastic'
 " Plugin 'tpope/vim-repeat'
 " Plugin 'junegunn/goyo.vim'
 " Plugin 'mattn/webapi-vim'
+Plugin 'simnalamburt/vim-mundo'
+Plugin 'majutsushi/tagbar'
 
 " Visual
 "Plugin 'altercation/vim-colors-solarized'
@@ -42,6 +47,9 @@ Plugin 'vim-syntastic/syntastic'  " Python validation
 
 " Golang
 Plugin 'fatih/vim-go'
+
+" Other
+Plugin 'twitvim/twitvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -131,7 +139,7 @@ map <space>w :w<CR>
 
 " #### NERDTree settings ####
 let NERDTreeRespectWildIgnore = 1
-map <TAB> :NERDTreeToggle<CR>
+map <C-X> :NERDTreeToggle<CR>
 map <C-N> :NERDTreeFind<CR>
 " #### End NERDTree settings ####
 
@@ -235,7 +243,7 @@ let g:syntastic_python_pylint_post_args="--max-line-length=120"
 let g:test#strategy = 'basic'
 let g:test#python#pytest#options = '-x --reuse-db -vv'
 let g:test#python#runner = 'pytest'
-let g:test#python#pytest#executable = 'docker-compose run --rm web py.test'
+let g:test#python#pytest#executable = 'honcho -e ../.env run py.test'
 nmap <silent> <leader>w :TestNearest<CR>
 nmap <silent> <leader>W :TestFile<CR>
 nmap <silent> <leader>l :TestLast<CR>
@@ -253,7 +261,11 @@ let g:syntastic_check_on_wq = 1
 " #### End Flake8 settings ####
 
 
-" #### Youcompleteme settings ####
-let g:ycm_python_binary_path = 'python'  " use Python from the active virtual environment
-nnoremap <leader>o :YcmCompleter GoTo<CR>
-" #### End Youcompleteme settings ####
+" #### Mundo settings #####
+nnoremap <F5> :MundoToggle<CR>
+" #### End Mundo settings ####
+
+
+" #### Tagbar settings ####
+nmap <F2> :TagbarToggle<CR>
+" #### End Tagbar settings ####
