@@ -13,43 +13,37 @@ Plugin 'VundleVim/Vundle.vim'
 
 " General
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
 Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'mileszs/ack.vim'
-" Does not work for some reason anymore. Causes seg fault
-" Plugin 'valloric/youcompleteme'  " see installation notes
 Plugin 'misterbuckley/vim-definitive'
 Plugin 'dbeniamine/cheat.sh-vim'
 Plugin 'ervandew/supertab'
-"Plugin 'rhysd/vim-grammarous'
-" Plugin 'syntastic'
-" Plugin 'tpope/vim-repeat'
-" Plugin 'junegunn/goyo.vim'
-" Plugin 'mattn/webapi-vim'
+Plugin 'justinmk/vim-sneak'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'majutsushi/tagbar'
 
 " Visual
-"Plugin 'altercation/vim-colors-solarized'
 Plugin 'AlessandroYorba/Sierra'
 Plugin 'vim-airline/vim-airline'
 
 " Python
-Plugin 'klen/python-mode'  " consider to remove it because there is no use
+Plugin 'plytophogy/vim-virtualenv'
 Plugin 'mitsuhiko/vim-jinja'
-Plugin 'zerc/vim-isort'
+Plugin 'fisadev/vim-isort'
 Plugin 'janko-m/vim-test'
 Plugin 'vim-syntastic/syntastic'  " Python validation
-" Plugin 'davidhalter/jedi-vim'
 
 " Golang
 Plugin 'fatih/vim-go'
 
 " Other
 Plugin 'twitvim/twitvim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -83,10 +77,6 @@ set lazyredraw
 set splitbelow
 set splitright
 
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-autocmd Filetype htmldjango setlocal ts=2 sw=2 expandtab
-autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab colorcolumn=120
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
 " #### End Visial settings ####
 
 
@@ -102,16 +92,16 @@ set autoindent
 set smartindent
 set laststatus=2  " always display a status line
 set backspace=2  " make backspace work like most other apps
-
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
 set noswapfile
+set wildignore+=*/tmp/*,*/venv/*,*.so,*.swp,*.zip,*.pyc,__pycache__
 
-" Ignore some shit
-set wildignore+=*/tmp/*,*/venv/*,*.so,*.swp,*.zip,*.pyc,__pycache__     " MacOSX/Linux
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype htmldjango setlocal ts=2 sw=2 expandtab
+autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab colorcolumn=120
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
 
-" Remove trailing whitespaces
 autocmd FileType python,yaml,html autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Disable bell
@@ -149,15 +139,17 @@ map <Leader>a :BuffergatorToggle<CR>
 " #### End Buffergator settings ####
 
 
-" #### CTRLP settings ####
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.git|\.hg|venv|node_modules|__pycache__)$',
-    \ 'file': '\v\.(exe|so|dll|pyc)$',
-    \ }
-" #### End CTRLP settings ####
-
+" #### Fuzzy search ####
+" Need to install it separately e.g. brew instrall fzf
+" Make it obey ignores and use AG as the search engine:
+" export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+map <C-P> :FZF<CR>
+set rtp+=/usr/local/opt/fzf
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'vsplit' }
+let g:fzf_layout = { 'window': '10split enew' }
+" #### End Fuzzy search ####
 
 " ### Git ####
 nnoremap <space>s :Gstatus<CR>
@@ -173,6 +165,7 @@ let g:airline_section_z='%l/%L : %c'
 
 " #### ISort settings ####
 autocmd BufWritePre *.py :Isort
+let g:vim_isort_python_version = 'python3'
 " #### End ISort settings ####
 
 
@@ -202,41 +195,14 @@ let g:go_highlight_methods = 1
 " #### End Golang settings ####
 
 
-" #### Grammar settings ####
-" set spell spelllang=en_gb
-" setlocal spell spelllang=en_gb
-" #### End Grammar settings ####
-
-
 " #### Search (Ack) ####
 let g:ackprg = 'ag --nogroup --nocolor --column'
-vmap <space>i :Ack --ignore *migrations* "<C-R>" festicket/apps/
 " #### End Search (Ack) ####
 
 
 " #### Search (vim-definitive) ####
 nnoremap <Leader>d :FindDefinition<CR>
 " ### End Search (vim-definitive) ####
-
-
-" #### Python mode settings
-let g:pymode = 1
-let g:pymode_trim_whitespaces = 1
-let g:pymode_options = 1
-let g:pymode_options_colorcolumn = 1
-let g:pymode_doc = 1
-let g:pymode_doc_bind = 'K'
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_bind = '<leader>b'
-let g:pymode_folding = 0
-let g:pymode_lint_ignore = "E501,W391"
-let g:pymode_rope = 0
-let g:pymode_lint = 0  " doesn't work from the terminal
-let g:pymode_lint_cwindow=1
-let g:pymode_options_max_line_length = 120
-let g:pymode_lint_options_pylint = {'max-line-length': g:pymode_options_max_line_length}
-let g:syntastic_python_pylint_post_args="--max-line-length=120"
-" #### End Python mode settings
 
 
 " #### Python tests settings ####
