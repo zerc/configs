@@ -1,6 +1,6 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible              " be iMproved
 let &t_ut=''                  " https://sw.kovidgoyal.net/kitty/faq.html#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
+set exrc                      " enable configs per project
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -35,15 +35,15 @@ Plugin 'plytophogy/vim-virtualenv'
 Plugin 'mitsuhiko/vim-jinja'
 Plugin 'fisadev/vim-isort'
 Plugin 'janko-m/vim-test'
-Plugin 'vim-syntastic/syntastic'  " Python validation
 
 " Golang
 Plugin 'fatih/vim-go'
 
 " Other
-Plugin 'twitvim/twitvim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'junegunn/fzf.vim'
+Plugin 'vim-syntastic/syntastic'  " Validation for variarity of languages including Pything
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -140,7 +140,7 @@ map <Leader>a :BuffergatorToggle<CR>
 
 
 " #### Fuzzy search ####
-" Need to install it separately e.g. brew instrall fzf
+" Need to install it separately e.g. `brew instrall fzf`
 " Make it obey ignores and use AG as the search engine:
 " export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 map <C-P> :FZF<CR>
@@ -206,15 +206,17 @@ nnoremap <Leader>d :FindDefinition<CR>
 
 
 " #### Python tests settings ####
-let g:test#strategy = 'basic'
-let g:test#python#pytest#options = '-x --reuse-db -vv'
-let g:test#python#runner = 'pytest'
-let g:test#python#pytest#executable = 'honcho -e ../.env run py.test'
+" -- Mappings --
 nmap <silent> <leader>w :TestNearest<CR>
 nmap <silent> <leader>W :TestFile<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>L :TestLast --pdb<CR>
 nmap <silent> <leader>] :TestVisit<CR>
+" -- Define these per project --
+" let g:test#strategy = 'basic'
+" let g:test#python#pytest#options = '-x --reuse-db -vv'
+" let g:test#python#runner = 'pytest'
+" let g:test#python#pytest#executable = 'honcho -e ../.env run py.test'
 " #### End Python tests settings ####
 
 
@@ -235,3 +237,12 @@ nnoremap <F5> :MundoToggle<CR>
 " #### Tagbar settings ####
 nmap <F2> :TagbarToggle<CR>
 " #### End Tagbar settings ####
+
+
+" #### Black ####
+" NOTE: the standart Black plugin comes with its own environment and it ignores 
+" setup.cfg from the project's directory. Use the next command as a workaround:
+" autocmd BufWritePost *.py !black <afile> 2>/dev/null
+" ### End Black ####
+
+set secure  " disable unsafe commands in project-specific files. Must be at the end.
