@@ -245,4 +245,9 @@ nmap <F2> :TagbarToggle<CR>
 " autocmd BufWritePost *.py !black <afile> 2>/dev/null
 " ### End Black ####
 
+
+" #### Spell Check ####
+setlocal spell spelllang=en_gb
+" #### End Spell Check ####
+
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
