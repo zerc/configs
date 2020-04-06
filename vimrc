@@ -11,40 +11,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" General
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'mileszs/ack.vim'
-Plugin 'misterbuckley/vim-definitive'
-Plugin 'dbeniamine/cheat.sh-vim'
-Plugin 'ervandew/supertab'
-Plugin 'justinmk/vim-sneak'
-Plugin 'simnalamburt/vim-mundo'
-Plugin 'majutsushi/tagbar'
-
-" Visual
-Plugin 'AlessandroYorba/Sierra'
-Plugin 'vim-airline/vim-airline'
-
-" Python
-Plugin 'plytophogy/vim-virtualenv'
-Plugin 'mitsuhiko/vim-jinja'
-Plugin 'fisadev/vim-isort'
-Plugin 'janko-m/vim-test'
-
-" Golang
-Plugin 'fatih/vim-go'
-
-" Other
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'junegunn/fzf.vim'
-Plugin 'vim-syntastic/syntastic'  " Validation for variarity of languages including Pything
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -58,7 +24,44 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" General
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'mileszs/ack.vim'
+Plugin 'misterbuckley/vim-definitive'
+Plugin 'dbeniamine/cheat.sh-vim'
+" Plugin 'ervandew/supertab'
+Plugin 'justinmk/vim-sneak'
+Plugin 'simnalamburt/vim-mundo'
+Plugin 'majutsushi/tagbar'
+Plugin 'liuchengxu/vim-clap'
 "
+" Visual
+Plugin 'AlessandroYorba/Sierra'
+Plugin 'vim-airline/vim-airline'
+
+" Python
+Plugin 'plytophogy/vim-virtualenv'
+Plugin 'mitsuhiko/vim-jinja'
+Plugin 'janko-m/vim-test'
+Plugin 'fisadev/vim-isort'
+Plugin 'psf/black'
+
+" Golang
+Plugin 'fatih/vim-go'
+
+" Other
+" Plugin 'ycm-core/YouCompleteMe'
+Plugin 'neoclide/coc.nvim'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
+Plugin 'junegunn/fzf.vim'
+Plugin 'vim-syntastic/syntastic'  " Validation for variarity of languages including Python
 " END PLUGINS
 
 
@@ -196,7 +199,8 @@ let g:go_highlight_methods = 1
 
 
 " #### Search (Ack) ####
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --nogroup --nocolor --column --ignore=tags'
+nmap <silent> <C-W>s :Ack<CR>
 " #### End Search (Ack) ####
 
 
@@ -240,14 +244,38 @@ nmap <F2> :TagbarToggle<CR>
 
 
 " #### Black ####
-" NOTE: the standart Black plugin comes with its own environment and it ignores 
-" setup.cfg from the project's directory. Use the next command as a workaround:
-" autocmd BufWritePost *.py !black <afile> 2>/dev/null
+autocmd BufWritePre *.py :Black
 " ### End Black ####
 
 
 " #### Spell Check ####
-setlocal spell spelllang=en_gb
+" setlocal spell spelllang=en_gb
 " #### End Spell Check ####
+"
+
+" ##### COC #####
+set updatetime=300
+set signcolumn=yes
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" ##### End COC #####
 
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
