@@ -40,6 +40,8 @@ Plugin 'justinmk/vim-sneak'
 Plugin 'simnalamburt/vim-mundo'
 Plugin 'majutsushi/tagbar'
 Plugin 'liuchengxu/vim-clap'
+Plugin 'chrisbra/NrrwRgn'
+Plugin 'wsdjeg/vim-fetch'
 "
 " Visual
 Plugin 'AlessandroYorba/Sierra'
@@ -277,5 +279,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " ##### End COC #####
+
+" ##### NarrowRegion settings #####
+let g:nrrw_rgn_vert = 1
+let g:nrrw_rgn_resize_window = 'relative'
+" ##### End NarrowRegion settings #####
 
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
