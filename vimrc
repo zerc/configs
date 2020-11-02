@@ -102,6 +102,9 @@ set nowb
 set noswapfile
 set wildignore+=*/tmp/*,*/venv/*,*.so,*.swp,*.zip,*.pyc,__pycache__
 
+set ignorecase
+set smartcase
+
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype htmldjango setlocal ts=2 sw=2 expandtab
 autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab colorcolumn=120
