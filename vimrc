@@ -14,6 +14,7 @@ Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vim-clap'
 Plug 'chrisbra/NrrwRgn'
 Plug 'wsdjeg/vim-fetch'
+Plug 'mileszs/ack.vim'
 
 " Visual
 Plug 'AlessandroYorba/Sierra'
@@ -106,8 +107,8 @@ map <space>w :w<CR>
 nnoremap <space>s :Gstatus<CR>
 map <space>p :!git push origin HEAD
 
-nmap <C-W>g :diffget //2<CR>  " accept mine changes
-nmap <C-W>h :diffget //3<CR>  " accept changes from the merged branch
+nmap <Leader>g :diffget //2<CR>  " accept mine changes
+nmap <Leader>h :diffget //3<CR>  " accept changes from the merged branch
 " #### End Figutive settings ####
 
 
