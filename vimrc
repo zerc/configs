@@ -1,71 +1,41 @@
-set nocompatible              " be iMproved
-let &t_ut=''                  " https://sw.kovidgoyal.net/kitty/faq.html#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
-set exrc                      " enable configs per project
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" ### Plugins ###
+call plug#begin('~/.vim/plugged')
 
 " General
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'mileszs/ack.vim'
-Plugin 'misterbuckley/vim-definitive'
-Plugin 'dbeniamine/cheat.sh-vim'
-" Plugin 'ervandew/supertab'
-Plugin 'justinmk/vim-sneak'
-Plugin 'simnalamburt/vim-mundo'
-Plugin 'majutsushi/tagbar'
-Plugin 'liuchengxu/vim-clap'
-Plugin 'chrisbra/NrrwRgn'
-Plugin 'wsdjeg/vim-fetch'
-"
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'justinmk/vim-sneak'
+Plug 'simnalamburt/vim-mundo'
+Plug 'majutsushi/tagbar'
+Plug 'liuchengxu/vim-clap'
+Plug 'chrisbra/NrrwRgn'
+Plug 'wsdjeg/vim-fetch'
+
 " Visual
-Plugin 'AlessandroYorba/Sierra'
-Plugin 'vim-airline/vim-airline'
+Plug 'AlessandroYorba/Sierra'
+Plug 'vim-airline/vim-airline'
 
 " Python
-Plugin 'plytophogy/vim-virtualenv'
-Plugin 'mitsuhiko/vim-jinja'
-Plugin 'janko-m/vim-test'
-Plugin 'fisadev/vim-isort'
-Plugin 'psf/black'
+Plug 'plytophogy/vim-virtualenv', {'for': 'python'}
+Plug 'mitsuhiko/vim-jinja', {'for': 'python'}
+Plug 'janko-m/vim-test', {'for': 'python'}
+Plug 'fisadev/vim-isort', {'for': 'python'}
+Plug 'psf/black', {'for': 'python'}
 
 " Golang
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go', {'for': 'golang'}
 
 " Other
-" Plugin 'ycm-core/YouCompleteMe'
-Plugin 'neoclide/coc.nvim'
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-Plugin 'junegunn/fzf.vim'
-Plugin 'vim-syntastic/syntastic'  " Validation for variarity of languages including Python
-" END PLUGINS
+"Plug 'neoclide/coc.nvim'
+Plug 'junegunn/fzf.vim'
+Plug 'vim-syntastic/syntastic'  
 
+call plug#end()
+" END PLUGINS
 
 " #### Visual settings ####
 colorscheme sierra
@@ -81,11 +51,13 @@ set incsearch
 set lazyredraw
 set splitbelow
 set splitright
-
 " #### End Visial settings ####
 
 
 " #### General settings ####
+let &t_ut=''                  " https://sw.kovidgoyal.net/kitty/faq.html#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
+set nocompatible              " be iMproved, required
+set exrc                      " enable configs per project
 set clipboard=unnamed  " use the common buffer for copy & paste
 set expandtab
 set shiftwidth=4
@@ -135,6 +107,15 @@ map <space>w :w<CR>
 " #### End General key bindings ####
 
 
+" #### Figutive settings ####
+nnoremap <space>s :Gstatus<CR>
+map <space>p :!git push origin HEAD
+
+nmap <C-W>g :diffget //2<CR>  " accept mine changes
+nmap <C-W>h :diffget //3<CR>  " accept changes from the merged branch
+" #### End Figutive settings ####
+
+
 " #### NERDTree settings ####
 let NERDTreeRespectWildIgnore = 1
 map <C-X> :NERDTreeToggle<CR>
@@ -158,11 +139,6 @@ let g:fzf_action = {
   \ 'ctrl-s': 'vsplit' }
 let g:fzf_layout = { 'window': '10split enew' }
 " #### End Fuzzy search ####
-
-" ### Git ####
-nnoremap <space>s :Gstatus<CR>
-map <space>p :!git push origin HEAD
-" #### End Git ####
 
 
 " #### Airline ####
@@ -209,11 +185,6 @@ nmap <silent> <C-W>s :Ack<CR>
 " #### End Search (Ack) ####
 
 
-" #### Search (vim-definitive) ####
-nnoremap <Leader>d :FindDefinition<CR>
-" ### End Search (vim-definitive) ####
-
-
 " #### Python tests settings ####
 " -- Mappings --
 nmap <silent> <leader>w :TestNearest<CR>
@@ -244,12 +215,15 @@ nnoremap <F5> :MundoToggle<CR>
 
 
 " #### Tagbar settings ####
-nmap <F2> :TagbarToggle<CR>
+nmap tt :TagbarToggle<CR>
 " #### End Tagbar settings ####
 
 
 " #### Black ####
-autocmd BufWritePre *.py :Black
+augroup RunBlack
+    autocmd!
+    autocmd BufWritePre *.py :Black
+augroup END
 " ### End Black ####
 
 
