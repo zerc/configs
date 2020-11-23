@@ -31,9 +31,10 @@ Plug 'psf/black', {'for': 'python'}
 Plug 'fatih/vim-go', {'for': 'golang'}
 
 " Other
-"Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim'
 Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'  
+Plug 'AndrewRadev/sideways.vim'
 
 call plug#end()
 " END PLUGINS
@@ -262,5 +263,11 @@ nmap <silent> gr <Plug>(coc-references)
 let g:nrrw_rgn_vert = 1
 let g:nrrw_rgn_resize_window = 'relative'
 " ##### End NarrowRegion settings #####
+
+
+" ##### Sideways' settings #####
+nnoremap <C-h> :SidewaysLeft<CR>
+nnoremap <C-l> :SidewaysRight<CR>
+" ##### ENDSideways' settings #####
 
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
