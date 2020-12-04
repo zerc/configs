@@ -115,6 +115,8 @@ map <space>p :!git push origin HEAD
 
 nmap <Leader>g :diffget //2<CR>  " accept mine changes
 nmap <Leader>h :diffget //3<CR>  " accept changes from the merged branch
+
+command! -nargs=+ Gca :r!git log -n200 --pretty=format:"\%an <\%ae>" | grep -i '<args>' | head -1 | xargs echo "Co-authored-by:"
 " #### End Figutive settings ####
 
 
