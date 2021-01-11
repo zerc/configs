@@ -78,6 +78,7 @@ set wildignore+=*/tmp/*,*/venv/*,*.so,*.swp,*.zip,*.pyc,__pycache__
 
 set ignorecase
 set smartcase
+set shiftround
 
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype htmldjango setlocal ts=2 sw=2 expandtab
@@ -113,8 +114,8 @@ map <space>w :w<CR>
 nnoremap <space>s :Gstatus<CR>
 map <space>p :!git push origin HEAD
 
-nmap <Leader>g :diffget //2<CR>  " accept mine changes
-nmap <Leader>h :diffget //3<CR>  " accept changes from the merged branch
+nmap <Leader>g :diffget //2<CR>
+nmap <Leader>h :diffget //3<CR>
 
 command! -nargs=+ Gca :r!git log -n200 --pretty=format:"\%an <\%ae>" | grep -i '<args>' | head -1 | xargs echo "Co-authored-by:"
 " #### End Figutive settings ####
