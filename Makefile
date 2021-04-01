@@ -5,6 +5,7 @@ help:
 	@echo "install-vim - install Vim's config"
 	@echo "install-tmux - install tmux's config"
 	@echo "install-iterm - generate a dynamic profile for iTerm2 and install it"
+	@echo "install-kitty - install kitty's config"
 
 
 install: install-vim install-tmux
@@ -44,3 +45,20 @@ install-tmux:
 
 install-iterm:
 	cat iTerm2Dynamic.base | sed 's/@GUID/'$(shell uuidgen)'/g' > ~/Library/Application\ Support/iTerm2/DynamicProfiles/zeroProfile
+
+
+install-kitty:
+	if [ -h ~/.config/kitty/kitty.conf ]; \
+	then \
+		rm ~/.config/kitty/kitty.conf; \
+		echo "Removed existing symlink just in case."; \
+	elif [ -f ~/.config/kitty/kitty.conf ]; \
+	then \
+		mv ~/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf.backup; \
+		echo "Saved existing Kitty's configuration as ".kitty.conf.backup"."; \
+	fi; \
+	ln -s $(CURRENT_DIR)/kitty.conf ~/.config/kitty/kitty.conf; \
+	printf "\e[34;5;120m"; \
+	printf "Kitty's config installed! \n"; \
+	printf "\e[0m"
+
