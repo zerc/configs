@@ -241,6 +241,8 @@ augroup END
 set updatetime=300
 set signcolumn=yes
 
+let g:coc_global_extensions=[ 'coc-pyright', ]
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
