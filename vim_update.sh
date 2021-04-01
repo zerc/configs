@@ -1,5 +1,13 @@
 #!/bin/bash
-# cd you local copy of https://github.com/vim/vim
+
+if [[ $@ == "" ]]
+then
+    echo "Specify the path to VIM repo. Check it out from https://github.com/vim/vim";
+else
+    echo $@;
+fi;
+
+cd $@;
 
 git checkout master && git pull;
 
