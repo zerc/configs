@@ -26,6 +26,7 @@ Plug 'mitsuhiko/vim-jinja', {'for': 'python'}
 Plug 'janko-m/vim-test', {'for': 'python'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
 Plug 'psf/black', {'for': 'python'}
+Plug 'jeetsukumaran/vim-pythonsense'
 
 " Golang
 Plug 'fatih/vim-go', {'for': 'golang'}
