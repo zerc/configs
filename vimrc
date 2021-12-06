@@ -33,7 +33,7 @@ Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'fatih/vim-go', {'for': 'golang'}
 
 " Other
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'  
 Plug 'AndrewRadev/sideways.vim'
@@ -113,7 +113,7 @@ map <space>w :w<CR>
 
 
 " #### Figutive settings ####
-nnoremap <space>s :Gstatus<CR>
+nnoremap <space>s :Git<CR>
 map <space>p :!git push origin HEAD
 
 nmap <Leader>g :diffget //2<CR>

@@ -24,6 +24,27 @@ install-vim:
 	ln -s $(CURRENT_DIR)/vimrc ~/.vimrc; \
 	printf "\e[34;5;120m"; \
 	printf "Vim's config installed! \n"; \
+	printf "\e[0m"; \
+	if [ ! -d "~/.config" ]; \
+	then \
+		mkdir ~/.config; \
+	fi; \
+	if [ ! -d "~/.config/nvim" ]; \
+	then \
+		mkdir ~/.config/nvim; \
+	fi; \
+	if [ -h ~/.config/nvim/init.vim ]; \
+	then \
+		rm ~/.config/nvim/init.vim; \
+		echo "Removed existing symlink just in case."; \
+	elif [ -f ~/.config/nvim/init.vim ]; \
+	then \
+		mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.backup; \
+		echo "Saved existing NeoVim's configuration as \"init.vim.backup\"."; \
+	fi; \
+	ln -s $(CURRENT_DIR)/init.vim ~/.config/nvim/init.vim; \
+	printf "\e[34;5;120m"; \
+	printf "NeoVim's config installed! \n"; \
 	printf "\e[0m"
 
 
