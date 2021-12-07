@@ -16,6 +16,8 @@ Plug 'wsdjeg/vim-fetch'
 Plug 'mileszs/ack.vim'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Visual
 Plug 'AlessandroYorba/Sierra'
@@ -34,7 +36,6 @@ Plug 'fatih/vim-go', {'for': 'golang'}
 
 " Other
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'  
 Plug 'AndrewRadev/sideways.vim'
 
@@ -135,19 +136,6 @@ map <Leader>a :BuffergatorToggle<CR>
 " #### End Buffergator settings ####
 
 
-" #### Fuzzy search ####
-" Need to install it separately e.g. `brew instrall fzf`
-" Make it obey ignores and use AG as the search engine:
-" export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-map <C-P> :FZF<CR>
-set rtp+=/usr/local/opt/fzf
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'vsplit' }
-let g:fzf_layout = { 'window': '10split enew' }
-" #### End Fuzzy search ####
-
-
 " #### Airline ####
 let g:airline_section_y=''
 let g:airline_section_z='%l/%L : %c'
@@ -184,12 +172,6 @@ let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_methods = 1
 " #### End Golang settings ####
-
-
-" #### Search (Ack) ####
-let g:ackprg = 'ag --nogroup --nocolor --column --ignore=tags'
-nmap <silent> <C-W>s :Ack<CR>
-" #### End Search (Ack) ####
 
 
 " #### Python tests settings ####
@@ -266,6 +248,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " ##### End COC #####
 
+
 " ##### NarrowRegion settings #####
 let g:nrrw_rgn_vert = 1
 let g:nrrw_rgn_resize_window = 'relative'
@@ -277,4 +260,11 @@ nnoremap <C-h> :SidewaysLeft<CR>
 nnoremap <C-l> :SidewaysRight<CR>
 " ##### ENDSideways' settings #####
 
+"
+" ##### Telescope settings #####
+nnoremap <C-P> <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" ##### EndTelescope settings #####
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
