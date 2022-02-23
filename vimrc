@@ -31,8 +31,8 @@ Plug 'fisadev/vim-isort', {'for': 'python'}
 Plug 'psf/black', {'for': 'python'}
 Plug 'jeetsukumaran/vim-pythonsense'
 
-" Golang
-Plug 'fatih/vim-go', {'for': 'golang'}
+" Ruby
+Plug 'ngmy/vim-rubocop', {'for': 'ruby'}
 
 " Other
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -149,28 +149,7 @@ let g:vim_isort_python_version = 'python3'
 
 
 " #### Golang settings ####
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap <leader>t  <Plug>(go-test)
-autocmd FileType go nmap <Leader>i <Plug>(go-info)
-"
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-
-let g:go_fmt_command = "goimports"
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_methods = 1
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 " #### End Golang settings ####
 
 
@@ -192,13 +171,14 @@ nmap <silent> <leader>] :TestVisit<CR>
 " #### End Python tests settings ####
 
 
-" #### Flake8 settings ####
+" #### Syntastic settings ####
 let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
-" #### End Flake8 settings ####
+" #### End Syntastic settings ####
 
 
 " #### Mundo settings #####
@@ -217,7 +197,7 @@ augroup RunBlack
     autocmd BufWritePre *.py :Black
 augroup END
 " ### End Black ####
-
+"
 
 " #### Spell Check ####
 " setlocal spell spelllang=en_gb
@@ -228,7 +208,7 @@ augroup END
 set updatetime=300
 set signcolumn=yes
 
-let g:coc_global_extensions=[ 'coc-pyright', ]
+let g:coc_global_extensions=[ 'coc-pyright', 'coc-go', 'coc-solargraph']
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -270,4 +250,13 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " ##### EndTelescope settings #####
+
+" #### Rubocop settings ####
+"let g:vimrubocop_extra_args = '-a'
+augroup RunRubo
+    autocmd!
+    autocmd BufWritePost *.rb :RuboCop -a
+augroup END
+" #### End Rubocop settings ####
+
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
