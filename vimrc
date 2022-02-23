@@ -175,6 +175,9 @@ let g:go_highlight_methods = 1
 
 
 " #### Python tests settings ####
+let g:test#strategy = "neovim"
+let g:test#preserve_screen = 1
+let g:test#neovim#start_normal = 1
 " -- Mappings --
 nmap <silent> <leader>w :TestNearest<CR>
 nmap <silent> <leader>W :TestFile<CR>
