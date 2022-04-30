@@ -32,7 +32,7 @@ Plug 'psf/black', {'for': 'python'}
 Plug 'jeetsukumaran/vim-pythonsense'
 
 " Ruby
-Plug 'ngmy/vim-rubocop', {'for': 'ruby'}
+Plug 'zerc/vim-rubocop', {'for': 'ruby'}
 
 " Other
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
