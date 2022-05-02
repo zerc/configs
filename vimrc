@@ -38,6 +38,7 @@ Plug 'zerc/vim-rubocop', {'for': 'ruby'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-syntastic/syntastic'  
 Plug 'AndrewRadev/sideways.vim'
+Plug 'google/vim-jsonnet'
 
 call plug#end()
 " END PLUGINS
@@ -258,5 +259,11 @@ augroup RunRubo
     autocmd BufWritePost *.rb :RuboCop -a
 augroup END
 " #### End Rubocop settings ####
+
+
+" #### Providers settings ####
+let g:python3_host_prog = '~/repos/global_python_env/bin/python'
+let g:ruby_host_prog = '~/.rbenv/versions/3.0.2/bin/neovim-ruby-host'
+" #### End Providers settings ####
 
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
