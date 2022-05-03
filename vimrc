@@ -19,6 +19,10 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 " Visual
 Plug 'AlessandroYorba/Sierra'
 Plug 'vim-airline/vim-airline'
@@ -205,11 +209,24 @@ augroup END
 " #### End Spell Check ####
 "
 
+" ##### Snippets #####
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" ##### End Snippets #####
+
+
 " ##### COC #####
 set updatetime=300
 set signcolumn=yes
 
-let g:coc_global_extensions=[ 'coc-pyright', 'coc-go', 'coc-solargraph']
+let g:coc_global_extensions=['coc-pyright', 'coc-go', 'coc-solargraph', 'coc-snippets']
+
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -222,6 +239,9 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : 
+                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 inoremap <silent><expr> <c-space> coc#refresh()
 
@@ -263,7 +283,7 @@ augroup END
 
 " #### Providers settings ####
 let g:python3_host_prog = '~/repos/global_python_env/bin/python'
-let g:ruby_host_prog = '~/.rbenv/versions/3.0.2/bin/neovim-ruby-host'
+let g:ruby_host_prog = '~/.rbenv/versions/3.0.3/bin/neovim-ruby-host'
 " #### End Providers settings ####
 
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
