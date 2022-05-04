@@ -20,7 +20,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 " Snippets
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Visual
@@ -208,13 +207,6 @@ augroup END
 " setlocal spell spelllang=en_gb
 " #### End Spell Check ####
 "
-
-" ##### Snippets #####
-let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" ##### End Snippets #####
-
 
 " ##### COC #####
 set updatetime=300
