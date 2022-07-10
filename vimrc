@@ -17,6 +17,7 @@ Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'janko-m/vim-test'
 Plug 'easymotion/vim-easymotion'
 
 " Snippets
@@ -29,7 +30,6 @@ Plug 'vim-airline/vim-airline'
 " Python
 Plug 'plytophogy/vim-virtualenv', {'for': 'python'}
 Plug 'mitsuhiko/vim-jinja', {'for': 'python'}
-Plug 'janko-m/vim-test', {'for': 'python'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
 Plug 'psf/black', {'for': 'python'}
 Plug 'jeetsukumaran/vim-pythonsense', {'for': 'python'}
@@ -175,6 +175,10 @@ nmap <silent> <leader>] :TestVisit<CR>
 " let g:test#python#runner = 'pytest'
 " let g:test#python#pytest#executable = 'honcho -e ../.env run py.test'
 " #### End Python tests settings ####
+
+" #### Ruby test settings ####
+let test#ruby#rspec#options = '--fail-fast=1'
+" #### End Ruby test settings ####
 
 
 " #### Syntastic settings ####
