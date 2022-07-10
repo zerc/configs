@@ -7,7 +7,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'justinmk/vim-sneak'
 Plug 'simnalamburt/vim-mundo'
 Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vim-clap'
@@ -18,6 +17,7 @@ Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'easymotion/vim-easymotion'
 
 " Snippets
 Plug 'honza/vim-snippets'
@@ -32,10 +32,12 @@ Plug 'mitsuhiko/vim-jinja', {'for': 'python'}
 Plug 'janko-m/vim-test', {'for': 'python'}
 Plug 'fisadev/vim-isort', {'for': 'python'}
 Plug 'psf/black', {'for': 'python'}
-Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'jeetsukumaran/vim-pythonsense', {'for': 'python'}
 
 " Ruby
 Plug 'zerc/vim-rubocop', {'for': 'ruby'}
+Plug 'kana/vim-textobj-user'  " vim-textobj-ruby depends on it
+Plug 'rhysd/vim-textobj-ruby', {'for': 'ruby'}
 
 " Other
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -278,4 +280,17 @@ let g:python3_host_prog = '~/repos/global_python_env/bin/python'
 let g:ruby_host_prog = '~/.rbenv/versions/3.0.3/bin/neovim-ruby-host'
 " #### End Providers settings ####
 
+" #### EasyMotion settings ####
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+nmap s <Plug>(easymotion-overwin-f2)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+" #### End EasyMotion settings ####
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
