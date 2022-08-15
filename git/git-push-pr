@@ -1,0 +1,56 @@
+#!/bin/sh
+# 
+# A script to automatically create Github PR with the information pulled out from Jira.
+# 
+# Setup
+# == Environment variables
+# * JIRA_API_TOKEN 
+#   Get it there: https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/
+# * JIRA_EMAIL
+#   This is your work email (then one you generated the token with)
+# * JIRA_DOMAIN
+#   The domain address of your Jira installation.
+#
+# == Dependencies
+# * jq - https://stedolan.github.io/jq/download/
+# * gh - https://cli.github.com/manual/  
+#
+# == Install
+# Make sure script can be found in your $PATH. To call it do: `git push-pr`
+
+
+# source: https://stackoverflow.com/questions/1797074/local-executing-hook-after-a-git-push
+GIT_DIR_="$(git rev-parse --git-dir)"
+BRANCH="$(git rev-parse --symbolic --abbrev-ref $(git symbolic-ref HEAD))"
+PRE_PUSH="$GIT_DIR_/hooks/pre-push"
+
+test -x "$PRE_PUSH" && exec "$PRE_PUSH" "$BRANCH" "$@"
+
+GIT_RESULT=$(git push "$@" 2>&1)
+
+if [[ $GIT_RESULT != *"[new branch]"* ]]; then
+    echo "Changes pushed to the existing branch 🎉"
+    exit 0
+fi
+
+# Create PR for new branches
+JIRA_ISSUE=$(git symbolic-ref HEAD --short | grep  -o '[A-Z]\+-\d\+')
+
+if [[ -z "$JIRA_ISSUE" ]]; then
+    echo "Not Jira branch, skipping ..."
+    exit 0
+fi
+
+JIRA_ISSUE_TITLE=$(curl \
+    -u $JIRA_EMAIL:$JIRA_API_TOKEN \
+    -H "Content-Type: application/json" \
+    -X GET \
+    https://$JIRA_DOMAIN/rest/api/latest/issue/$JIRA_ISSUE | jq .fields.summary);
+
+JIRA_ISSUE_TITLE=${JIRA_ISSUE_TITLE//\"/}  # removing extra quotes
+
+gh pr create \
+    -a "@me" \
+    -b "[$JIRA_ISSUE](https://$JIRA_DOMAIN/browse/$JIRA_ISSUE)" \
+    -t "[$JIRA_ISSUE] $JIRA_ISSUE_TITLE" \
+    -d
