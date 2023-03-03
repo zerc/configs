@@ -62,6 +62,11 @@ set incsearch
 set lazyredraw
 set splitbelow
 set splitright
+
+" Coc hints colours
+hi CocInlayHint ctermfg=111 gui=undercurl guifg=#87afff guisp=Blue
+hi CocInlayHintParameter ctermfg=111 gui=undercurl guifg=#87afff guisp=Blue
+hi CocInlayHintType ctermfg=111 gui=undercurl guifg=#87afff guisp=Blue
 " #### End Visial settings ####
 
 
@@ -272,29 +277,29 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " #### Rubocop settings ####
 "let g:vimrubocop_extra_args = '-a'
-augroup RunRubo
-    autocmd!
-    autocmd BufWritePost *.rb :RuboCop -a
-augroup END
+" augroup RunRubo
+"     autocmd!
+"     autocmd BufWritePost *.rb :RuboCop -a
+" augroup END
 " #### End Rubocop settings ####
 
 
 " #### Providers settings ####
 let g:python3_host_prog = '~/repos/global_python_env/bin/python'
-let g:ruby_host_prog = '~/.rbenv/versions/3.0.3/bin/neovim-ruby-host'
+let g:ruby_host_prog = '~/.rbenv/versions/3.1.3/bin/neovim-ruby-host'
 " #### End Providers settings ####
 
 " #### EasyMotion settings ####
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
+" let g:EasyMotion_do_mapping = 0
+" let g:EasyMotion_smartcase = 1
 
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+" map  / <Plug>(easymotion-sn)
+" omap / <Plug>(easymotion-tn)
+" map  n <Plug>(easymotion-next)
+" map  N <Plug>(easymotion-prev)
 
-nmap s <Plug>(easymotion-overwin-f2)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+" nmap s <Plug>(easymotion-overwin-f2)
+" map <Leader>j <Plug>(easymotion-j)
+" map <Leader>k <Plug>(easymotion-k)
 " #### End EasyMotion settings ####
 set secure  " disable unsafe commands in project-specific files. Must be at the end.
